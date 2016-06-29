@@ -12,6 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('appraisals.index');
+    return view('welcome');
 });
 Route::get('/appraisals', 'AppraisalsController@index');
+Route::get('/appraisals/create', 'AppraisalsController@create');
+Route::post('/appraisals', 'AppraisalsController@store');
+Route::get('/appraisals/{id}', 'AppraisalsController@show');
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

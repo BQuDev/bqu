@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+use App\Appraisal;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +17,9 @@ class AppraisalsController extends Controller
      */
     public function index()
     {
-        return view('appraisals.index');
+        $appraisals = Appraisal::all();
+        return view('appraisals.index')
+            ->with('appraisals',$appraisals);
     }
 
     /**
@@ -36,7 +40,23 @@ class AppraisalsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'Name' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('appraisals/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $appraisal = new Appraisal();
+        $appraisal->name = $request->get('Name');
+        $appraisal->save();
+
+        return view('appraisals.index');
+
+
     }
 
     /**
