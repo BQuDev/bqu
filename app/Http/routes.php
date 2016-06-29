@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('appraisals.index');
 });
+Route::get('/appraisals', 'AppraisalsController@index');
