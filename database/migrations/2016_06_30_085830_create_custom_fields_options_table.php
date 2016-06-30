@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomFieldsTable extends Migration
+class CreateCustomFieldsOptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateCustomFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('custom_fields', function (Blueprint $table) {
+        Schema::create('custom_field_options', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('appraisalsId');
-            $table->integer('customFieldTypeId');
-            $table->string('label');
-            $table->string('cid');
-            $table->boolean('required');
+            $table->integer('customFieldId');
+            $table->text('label');
+            $table->boolean('checked');
         });
     }
 
@@ -29,6 +27,6 @@ class CreateCustomFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('custom_fields');
+        Schema::drop('custom_field_options');
     }
 }

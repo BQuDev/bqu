@@ -54,7 +54,11 @@ class AppraisalsController extends Controller
         $appraisal->name = $request->get('Name');
         $appraisal->save();
 
-        return view('appraisals.index');
+        return redirect()->route('appraisals', [$appraisal->id]);
+
+        $appraisals = Appraisal::all();
+        return view('appraisals.index')
+            ->with('appraisals',$appraisals);
 
 
     }

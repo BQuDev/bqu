@@ -14,6 +14,7 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     {{ Html::style('css/a1.min.css') }}
+    @yield('post_css')
     <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <!-- END HEAD -->
@@ -205,6 +206,7 @@
 <![endif]-->
 
 {{ Html::script('scripts/a1.js') }}
+@yield('post_js')
 <script>
     jQuery(document).ready(function() {
         Metronic.init(); // init metronic core components

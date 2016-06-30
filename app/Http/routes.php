@@ -17,7 +17,12 @@ Route::get('/', function () {
 Route::get('/appraisals', 'AppraisalsController@index');
 Route::get('/appraisals/create', 'AppraisalsController@create');
 Route::post('/appraisals', 'AppraisalsController@store');
-Route::get('/appraisals/{id}', 'AppraisalsController@show');
+//Route::get('/appraisals/{id}', 'CustomFieldsController@show');
+Route::get('appraisals/{id}',['as' => 'appraisals', 'uses' => 'CustomFieldsController@show']);
+Route::get('appraisals/{id}/ajax','CustomFieldsController@ajax');
+Route::post('appraisals/{id}','CustomFieldsController@store');
+
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
